@@ -22,15 +22,15 @@ func GetEvents() []Event {
 
 func InitializeEventsArray(){
 	Events = []Event{
-		Event{Title: "Dinner",
+		{Title: "Dinner",
 			Location: "My House",
 			When:   "Tonight",
 			ID: "2944a9cb-ef2d-4632-ac1d-af2b2629d0f2"},
-		Event{Title: "Go Programming Lesson",
+		{Title: "Go Programming Lesson",
 			Location: "At School",
 			When:   "Tomorrow",
 			ID: "f88f1860-9a5d-423e-820f-9acb4db3030e"},
-		Event{Title: "Company Picnic",
+		{Title: "Company Picnic",
 			Location: "At the Park",
 			When:   "Saturday",
 			ID: "4cb393fb-dd19-469e-a52c-22a12c0a98df"},

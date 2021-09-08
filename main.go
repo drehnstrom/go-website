@@ -34,7 +34,7 @@ func main() {
 	myRouter.HandleFunc("/add", addHandler)
 	myRouter.HandleFunc("/edit/{id}", editHandler)
 	myRouter.HandleFunc("/delete/{id}", deleteHandler)
-	
+
 	log.Printf("Webserver listening on Port: %s", port)
 	http.ListenAndServe(":"+port, myRouter)
 }
@@ -45,6 +45,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	data := HomePageData{
 		PageTitle: "Home Page",
 		Events:    events,
+		Count:     len(events),
 	}
 
 	var tpl = template.Must(template.ParseFiles("templates/index.html", "templates/layout.html"))
@@ -124,7 +125,7 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 
 		data := EditPageData{
 			PageTitle: "Edit Event",
-			Event: event,
+			Event:     event,
 		}
 
 		var tpl = template.Must(template.ParseFiles("templates/edit.html", "templates/layout.html"))
@@ -142,7 +143,7 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		// Add Event Here
 		event := eventsdb.Event{
-			ID: 	  r.FormValue("id"),
+			ID:       r.FormValue("id"),
 			Title:    r.FormValue("title"),
 			Location: r.FormValue("location"),
 			When:     r.FormValue("when"),
@@ -167,6 +168,7 @@ func deleteHandler(w http.ResponseWriter, r *http.Request) {
 type HomePageData struct {
 	PageTitle string
 	Events    []eventsdb.Event
+	Count     int
 }
 
 // AboutPageData for About template
@@ -182,5 +184,5 @@ type AddPageData struct {
 // EditPageData for About template
 type EditPageData struct {
 	PageTitle string
-	Event eventsdb.Event
+	Event     eventsdb.Event
 }
